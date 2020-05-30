@@ -1,0 +1,101 @@
+.page-wrapper {
+	min-height: 100vh;
+	background: rgb(131, 58, 180);
+	background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+}
+.navbar-container {
+	padding: 20px 0;
+	.navbar {
+		background-color: #0000001f;
+		color: #fff;
+		button {
+			&.btn {
+				background: white;
+				color: black;
+			}
+		}
+	}
+}
+.hero-text {
+	font-size: 6em;
+	letter-spacing: 0.3em;
+	line-height: 1.3em;
+}
+.product-image {
+	width: 80px;
+	height: 80px;
+	box-shadow: 1px 1px 2px 1px #ccc;
+}
+.form-wrapper {
+	max-width: 360px;
+	margin: 0 auto;
+	background: #ffffff30;
+	padding: 20px;
+	border-radius: 5px;
+	.btn {
+		width: 100%;
+	}
+}
+.btn-secondary {
+	background: #bd2d6d;
+	border: none;
+	&:hover,
+	&:visited,
+	&:active,
+	&:focus {
+		background: #bd2d6d;
+	}
+}
+.badge-secondary {
+	@extend .btn-secondary;
+}
+
+.product-container {
+	padding: 20px;
+	border-radius: 4px;
+	background: #ffffff30;
+}
+.transparent-container {
+	@extend .product-container;
+}
+.navbar-brand {
+	color: #fff;
+	&:active,
+	&:focus,
+	&:visited,
+	&:hover {
+		color: #fff;
+	}
+}
+.toast {
+	padding: 10px;
+	background: #fd4b2a;
+	color: #fff;
+	letter-spacing: 0.2em;
+	position: fixed;
+	bottom: 0;
+	z-index: 9;
+	right: 1em;
+}
+.orders-container {
+	width: 60%;
+	margin: 0 auto;
+	padding: 10px;
+	background: #ffffff30;
+}
+.card-number-element,
+.card-expiry-element,
+.card-cvv-element {
+	background: #fff;
+	padding: 10px;
+	border-radius: 4px;
+	margin-bottom: 15px;
+}
+.checkout-link {
+	a {
+		color: #fff;
+	}
+	width: 320px;
+	float: right;
+	margin-bottom: 32px;
+}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var AppContext = React.createContext({});","map":{"version":3,"sources":["C:/my-projects/shoe-store/lib/AppContext.js"],"names":["AppContext","React","createContext"],"mappings":"AAAA,OAAO,IAAMA,UAAU,GAAGC,KAAK,CAACC,aAAN,CAAoB,EAApB,CAAnB","sourcesContent":["export const AppContext = React.createContext({});\r\n"]},"metadata":{},"sourceType":"module"}
