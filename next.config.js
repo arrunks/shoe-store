@@ -18,7 +18,7 @@ module.exports = (phase, { defaultConfig }) => {
 			includePaths: [path.join(__dirname, 'styles')],
 		},
 		env: {
-			backendUrl: 'http://shoe-store-strapi.herokuapp.com',
+			backendUrl: 'https://shoe-store-strapi.herokuapp.com',
 		},
 	};
 };
