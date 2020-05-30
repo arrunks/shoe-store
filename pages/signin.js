@@ -16,7 +16,7 @@ const Signin = (props) => {
 			identifier: email,
 			password,
 		};
-		const res = await fetch('http://localhost:1337/auth/local', {
+		const res = await fetch(`${process.env.backendUrl}/auth/local`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
