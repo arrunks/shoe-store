@@ -47,48 +47,37 @@ const Header = () => {
 
 	return (
 		<div className='navbar-container'>
-			<Navbar expand='md'>
+			<Navbar expand='md' className='justify-content-between'>
 				<NavbarBrand href='/'>Shoe Store</NavbarBrand>
-				<NavbarToggler onClick={toggle} />
-				<Collapse isOpen={isOpen} navbar>
-					<Nav className='ml-auto' navbar>
-						<NavItem>
-							<Link href='/cart'>
-								<Button className='mr-2'>
-									Cart <Badge color='secondary'>{cartCount}</Badge>
-								</Button>
-							</Link>
-						</NavItem>
-						{user && (
-							<React.Fragment>
-								<NavItem>
-									<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
-										<DropdownToggle caret>{user.username}</DropdownToggle>
-										<DropdownMenu>
-											<DropdownItem onClick={doLogout}>Logout</DropdownItem>
-											<DropdownItem onClick={goToOrders}>Orders</DropdownItem>
-										</DropdownMenu>
-									</Dropdown>
-								</NavItem>
-							</React.Fragment>
-						)}
+				<div className='d-flex'>
+					<Link href='/cart'>
+						<Button className='mr-2'>
+							Cart <Badge color='secondary'>{cartCount}</Badge>
+						</Button>
+					</Link>
+					{user && (
+						<React.Fragment>
+							<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+								<DropdownToggle caret>{user.username}</DropdownToggle>
+								<DropdownMenu>
+									<DropdownItem onClick={doLogout}>Logout</DropdownItem>
+									<DropdownItem onClick={goToOrders}>Orders</DropdownItem>
+								</DropdownMenu>
+							</Dropdown>
+						</React.Fragment>
+					)}
 
-						{!user && (
-							<React.Fragment>
-								<NavItem>
-									<Link href='/signin'>
-										<Button className='mr-2'>Sign in</Button>
-									</Link>
-								</NavItem>
-								<NavItem>
-									<Link href='/signup'>
-										<Button>Sign up</Button>
-									</Link>
-								</NavItem>
-							</React.Fragment>
-						)}
-					</Nav>
-				</Collapse>
+					{!user && (
+						<React.Fragment>
+							<Link href='/signin'>
+								<Button className='mr-2'>Sign in</Button>
+							</Link>
+							<Link href='/signup'>
+								<Button>Sign up</Button>
+							</Link>
+						</React.Fragment>
+					)}
+				</div>
 			</Navbar>
 		</div>
 	);
