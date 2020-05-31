@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { useRouter } from 'next/router';
-import qs from 'querystring';
+import NProgress from 'nprogress';
 
 import withLayout from '../lib/withLayout';
 import withAuth from '../lib/withAuth';
@@ -24,12 +24,20 @@ const Signup = (props) => {
 	const [passwordSecond, setPasswordSecond] = useState();
 	const [email, setEmail] = useState();
 
-	const [register] = useMutation(CREATE_USER, {
+	const [register, { loading, error }] = useMutation(CREATE_USER, {
 		onCompleted({ register }) {
 			document.cookie = `jwt=${register.jwt}; path=/`;
 			router.push('/');
 		},
 	});
+
+	if (loading) {
+		NProgress.start();
+	}
+
+	if (error) {
+		NProgress.stop();
+	}
 
 	const onFormSubmit = async (e) => {
 		e.preventDefault();
@@ -85,6 +93,7 @@ const Signup = (props) => {
 					/>
 				</FormGroup>
 				<Button>Submit</Button>
+				{error && <p>Something Went Wrong !</p>}
 			</Form>
 		</div>
 	);

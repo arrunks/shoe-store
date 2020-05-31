@@ -24,11 +24,11 @@
     "/_polyfills": [
       "static/runtime/polyfills.js"
     ],
-    "/index": [
+    "/checkout": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/orders": [
+    "/index": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

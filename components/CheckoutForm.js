@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import Router from 'next/router';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { Row, Col, Button, Label, Input } from 'reactstrap';
+import NProgress from 'nprogress';
 
 import withAuth from '../lib/withAuth';
 import withLayout from '../lib/withLayout';
@@ -92,7 +93,7 @@ const CheckoutForm = () => {
 		if (!shippingAddress || disabled) {
 			return false;
 		}
-
+		NProgress.start();
 		const payload = await stripe.confirmCardPayment(clientSecret, {
 			payment_method: {
 				card: elements.getElement(CardElement),
@@ -123,6 +124,7 @@ const CheckoutForm = () => {
 		});
 		updateStore('cart', []);
 		localStorage.setItem('cart', JSON.stringify([]));
+		NProgress.stop();
 		Router.push('/orders');
 	};
 
@@ -137,7 +139,7 @@ const CheckoutForm = () => {
 			{!cart && <p>No Order in place.</p>}
 			{cart && (
 				<Row>
-					<Col>
+					<Col md={6}>
 						<div className='transparent-container'>
 							<p>Total Price: Rs. {totalPrice}</p>
 							<div>
@@ -179,10 +181,8 @@ const CheckoutForm = () => {
 							</div>
 						</div>
 					</Col>
-					<Col>
-						<Col md={6}>
-							<img src='https://www.internationalscienceediting.com/wp-content/uploads/2017/06/logo-stripe.png' />
-						</Col>
+					<Col md={6}>
+						<img src='https://www.internationalscienceediting.com/wp-content/uploads/2017/06/logo-stripe.png' />
 					</Col>
 				</Row>
 			)}

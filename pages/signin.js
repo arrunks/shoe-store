@@ -1,14 +1,44 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import qs from 'querystring';
+import NProgress from 'nprogress';
 import { useRouter } from 'next/router';
+
 import withLayout from '../lib/withLayout';
 import withAuth from '../lib/withAuth';
+
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
+
+const LOGIN = gql`
+	mutation login($input: UsersPermissionsLoginInput!) {
+		login(input: $input) {
+			jwt
+		}
+	}
+`;
 
 const Signin = (props) => {
 	const router = useRouter();
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
+
+	const [login, { loading, error }] = useMutation(LOGIN, {
+		onCompleted({ login }) {
+			const { jwt } = login;
+			if (jwt) {
+				document.cookie = `jwt=${jwt}; path=/`;
+				router.push('/');
+			}
+		},
+	});
+
+	if (loading) {
+		NProgress.start();
+	}
+
+	if (error) {
+		NProgress.stop();
+	}
 
 	const submitForm = async (e) => {
 		e.preventDefault();
@@ -16,16 +46,7 @@ const Signin = (props) => {
 			identifier: email,
 			password,
 		};
-		const res = await fetch(`${process.env.backendUrl}/auth/local`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-			},
-			body: qs.stringify(opts),
-		});
-		const response = await res.json();
-		document.cookie = `jwt=${response.jwt}; path=/`;
-		router.push('/');
+		login({ variables: { input: { ...opts } } });
 	};
 
 	return (
@@ -51,6 +72,7 @@ const Signin = (props) => {
 						placeholder='Enter Password'
 					/>
 				</FormGroup>
+				{error && <p>Incorrect Email/Password.</p>}
 				<Button>Submit</Button>
 			</Form>
 		</div>

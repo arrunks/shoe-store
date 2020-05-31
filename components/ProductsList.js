@@ -19,7 +19,7 @@ const AddToCartButton = ({ onClickCallback }) => {
 		}
 	};
 	return (
-		<Button onClick={onClick} className='float-right'>
+		<Button onClick={onClick} className='float-right add-to-cart-btn'>
 			{state.text}
 		</Button>
 	);
@@ -51,26 +51,32 @@ const ProductsList = ({ products }) => {
 						<Col>
 							<Card className='p-2'>
 								<Row>
-									<Col md={2}>
-										<div className='product-image'>
-											<CardImg
-												top
-												width='100%'
-												height='100%'
-												src={`${product.displayImage}`}
-												alt='Card image cap'
-											/>
-										</div>
-									</Col>
-									<Col className={'align-self-center'}>
+									<Col md={8}>
 										<Row>
 											<Col>
-												<CardTitle className='pl-1'>{product.name}</CardTitle>
+												<div className='product-image'>
+													<CardImg
+														top
+														width='100%'
+														height='100%'
+														src={`${product.displayImage}`}
+														alt='Card image cap'
+													/>
+												</div>
 											</Col>
-										</Row>
-										<Row>
-											<Col>
-												<CardSubtitle className='pl-1'>Rs. {product.price}</CardSubtitle>
+											<Col className={'align-self-center'}>
+												<Row>
+													<Col>
+														<CardTitle className='pl-1'>{product.name}</CardTitle>
+													</Col>
+												</Row>
+												<Row>
+													<Col>
+														<CardSubtitle className='pl-1'>
+															Rs. {product.price}
+														</CardSubtitle>
+													</Col>
+												</Row>
 											</Col>
 										</Row>
 									</Col>
