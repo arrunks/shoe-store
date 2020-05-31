@@ -124,7 +124,7 @@ const CheckoutForm = () => {
 		});
 		updateStore('cart', []);
 		localStorage.setItem('cart', JSON.stringify([]));
-		NProgress.stop();
+		//NProgress.stop();
 		Router.push('/orders');
 	};
 

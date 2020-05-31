@@ -27,7 +27,8 @@ const Signin = (props) => {
 			const { jwt } = login;
 			if (jwt) {
 				document.cookie = `jwt=${jwt}; path=/`;
-				router.push('/');
+				window.history.back(-1);
+				//router.push('/');
 			}
 		},
 	});
